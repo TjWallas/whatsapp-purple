@@ -3,7 +3,7 @@ LIBNAME = libwhatsapp.dll
 .PHONY: all
 all: $(LIBNAME)
 
-C_SRCS = wa_purple.c tinfl.c imgutil.c aes.c
+C_SRCS = wa_purple.c tinfl.c aes.c
 CXX_SRCS = whatsapp-protocol.cc wa_util.cc rc4.cc keygen.cc tree.cc databuffer.cc message.cc
 
 C_OBJS = $(C_SRCS:.c=.o)

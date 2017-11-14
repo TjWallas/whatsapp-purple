@@ -122,7 +122,6 @@ int WhatsappConnection::sendImage(std::string mid, std::string to, int w, int h,
 	fu.type = "image";
 	fu.uploading = false;
 	fu.totalsize = 0;
-	fu.thumbnail = getpreview(fp);
 	fu.msgid = mid;
 	uploadfile_queue.push_back(fu);
 	outbuffer = outbuffer + serialize_tree(&req);

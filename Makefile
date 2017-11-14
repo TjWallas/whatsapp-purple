@@ -28,7 +28,7 @@ INCLUDES = -I./libaxolotl-cpp/ecc \
 
 #           -I./libaxolotl-cpp/sqli-store \
 
-C_SRCS = tinfl.c imgutil.c aes.c
+C_SRCS = tinfl.c aes.c
 CXX_SRCS = whatsapp-protocol.cc wa_util.cc rc4.cc keygen.cc tree.cc databuffer.cc message.cc wa_purple.cc
 
 C_OBJS = $(C_SRCS:.c=.o)
@@ -54,7 +54,7 @@ CFLAGS += \
 
 CXXFLAGS += -std=c++11
 
-LIBS_PURPLE = $(shell $(PKG_CONFIG) --libs purple) -lfreeimage ./libaxolotl-cpp/libaxolotl.a -lprotobuf ./libaxolotl-cpp/libcurve25519/libcurve25519.a
+LIBS_PURPLE = $(shell $(PKG_CONFIG) --libs purple) ./libaxolotl-cpp/libaxolotl.a -lprotobuf ./libaxolotl-cpp/libcurve25519/libcurve25519.a
 LDFLAGS ?= $(ARCHFLAGS)
 LDFLAGS += -shared -pipe
 

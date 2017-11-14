@@ -32,7 +32,6 @@ unsigned char *SHA1(const unsigned char *d, int n, unsigned char *md);
 std::string md5hex(std::string target);
 std::string md5raw(std::string target);
 std::string SHA256_file_b64(const char *filename);
-std::string getpreview(const char *filename);
 #endif
 
 const char *file_mime_type(const char *filename, const char *buf, int buflen);

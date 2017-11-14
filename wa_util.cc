@@ -13,7 +13,6 @@
 #include <stdio.h>
 
 #include "wa_util.h"
-#include "imgutil.h"
 
 /* Implementations when Openssl is not present */
 
@@ -120,26 +119,7 @@ std::string base64_encode_esp(unsigned char const *bytes_to_encode, unsigned int
 
 }
 
-std::string getpreview(const char *filename)
-{
-	FILE * fd = fopen(filename, "rb");
-	std::string r;
-	int read = 0;
-	do {
-		char buf[1024];
-		read = fread(buf, 1, 1024, fd);
-		if (read > 0)
-			r += std::string(buf,read);
-	} while (read > 0);
-	fclose(fd);
 
-	int len;
-	char * buffer;
-	imgThumbnail((unsigned char*)r.c_str(), r.size(), (void**)&buffer, &len, 81);
-
-	std::string ret(buffer, len);
-	return ret;
-}
 
 #ifdef ENABLE_OPENSSL
 

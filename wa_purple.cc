@@ -59,7 +59,6 @@
 
 #include "wa_connection.h"
 #include "message.h"
-#include "imgutil.h"
 #include "wa_constants.h"
 
 #ifdef _WIN32
@@ -1019,28 +1018,6 @@ static unsigned int waprpl_send_typing(PurpleConnection * gc, const char *who, P
 
 static void waprpl_set_buddy_icon(PurpleConnection * gc, PurpleStoredImage * img)
 {
-	/* Send the picture the user has selected! */
-	whatsapp_connection *wconn = (whatsapp_connection*)purple_connection_get_protocol_data(gc);
-	size_t size = purple_imgstore_get_size(img);
-	const void *data = purple_imgstore_get_data(img);
-
-	if (data) {
-		// First of all make the picture a square
-		char * sqbuffer; int sqsize;
-		imgProfile((unsigned char*)data, size, (void**)&sqbuffer, &sqsize, 640);
-
-		char * pbuffer; int osize;
-		imgProfile((unsigned char*)data, size, (void**)&pbuffer, &osize, 96);
-
-		wconn->waAPI->send_avatar(std::string(sqbuffer, sqsize), std::string(pbuffer, osize));
-
-		free(sqbuffer); free(pbuffer);
-	}
-	else {
-		wconn->waAPI->send_avatar("","");
-	}
-
-	waprpl_check_output(gc);
 }
 
 static gboolean waprpl_can_receive_file(PurpleConnection * gc, const char *who)
